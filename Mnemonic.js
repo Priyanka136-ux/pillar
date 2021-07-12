@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 })
 
 //Schema to handle validation
-const Schema = Yup.object().shape({ mnemonic: Yup.string().min(15, 'Please Enter Atleast 15 Letters').required('Mnemonic required') });
+const Schema = Yup.object().shape({ mnemonic: Yup.string().min(15, 'Please Enter Atleast 15 Charaters').required('Mnemonic required') });
 
 
 const mapStateToProps = state => state;
@@ -96,16 +96,36 @@ class Mnemonic extends Component {
     }
 
     saveMnemonic(values) {
-        this.props.mnemonicChange(values.mnemonic);
-        if (Platform.OS === 'android') {
-            ToastAndroid.showWithGravity(
-                "Mnemonic updated successfully",
-                ToastAndroid.SHORT,
-                ToastAndroid.CENTER
-            );
-        } else {
-            AlertIOS.alert(msg);
+        if(values.mnemonic.length>15){
+           
+           
+            this.props.mnemonicChange(values.mnemonic);
+            if (Platform.OS === 'android') {
+                ToastAndroid.showWithGravity(
+                    "Mnemonic updated successfully",
+                    ToastAndroid.SHORT,
+                    ToastAndroid.CENTER
+                );
+            } else {
+                AlertIOS.alert(msg);
+            }
+          
         }
+        else {
+        
+          
+            if (Platform.OS === 'android') {
+                ToastAndroid.showWithGravity(
+                    "Please Enter minimum 15 characters",
+                    ToastAndroid.SHORT,
+                    ToastAndroid.CENTER
+                );
+            } else {
+                AlertIOS.alert(msg);
+            }
+
+        }
+       
        
     }
 

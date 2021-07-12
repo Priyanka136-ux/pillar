@@ -16,16 +16,23 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
+
     <Provider store={store}>
       <NavigationContainer>
+     
+     
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home} />
+       
           <Stack.Screen name="Transaction" component={Transaction} />
           <Stack.Screen name="Mnemonic" component={Mnemonic} />
+        
         </Stack.Navigator>
+     
       </NavigationContainer>
+        </Provider>
 
-    </Provider>
+  
 
   );
 }
